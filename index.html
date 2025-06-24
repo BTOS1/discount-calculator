@@ -15,8 +15,14 @@
   </style>
 </head>
 <body>
+    <div class="container"
+     <img src="images/OSBLACK.png" alt="Discount Banner" />
+
+
+
+   <div>
   <h2>Discount Calculator</h2>
-  
+
   <label>Original Price ($):
     <input type="number" id="origPrice1" placeholder="e.g. 120">
   </label>
@@ -34,7 +40,7 @@
   <hr>
 
   <h2>Find Discount Percentage</h2>
-  
+
   <label>Original Price ($):
     <input type="number" id="origPrice2" placeholder="e.g. 120">
   </label>
@@ -48,7 +54,8 @@
   </div>
 
   <div id="result2"></div>
-
+ </div>
+</body>
   <script>
     function calculateFinalPrice() {
       const originalPrice = parseFloat(document.getElementById("origPrice1").value);
@@ -88,5 +95,5 @@
       document.getElementById("result2").innerText = "";
     }
   </script>
-</body>
+
 </html>
