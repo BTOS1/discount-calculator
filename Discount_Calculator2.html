@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Discount Tools</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 500px; margin: auto; }
+    input, button { width: 100%; padding: 10px; margin-top: 10px; font-size: 16px; }
+    label { display: block; margin-top: 15px; }
+    #result1, #result2 { margin-top: 20px; font-weight: bold; }
+    .btn-group { display: flex; gap: 10px; margin-top: 10px; }
+    .btn-group button { flex: 1; }
+    hr { margin: 30px 0; }
+  </style>
+</head>
+<body>
+  <h2>Discount Calculator</h2>
+  
+  <label>Original Price ($):
+    <input type="number" id="origPrice1" placeholder="e.g. 120">
+  </label>
+  <label>Discount Percentage (%):
+    <input type="number" id="discountPercent" placeholder="e.g. 20">
+  </label>
+
+  <div class="btn-group">
+    <button onclick="calculateFinalPrice()">Calculate Final Price</button>
+    <button onclick="clearCalc1()">Clear</button>
+  </div>
+
+  <div id="result1"></div>
+
+  <hr>
+
+  <h2>Find Discount Percentage</h2>
+  
+  <label>Original Price ($):
+    <input type="number" id="origPrice2" placeholder="e.g. 120">
+  </label>
+  <label>Final Price ($):
+    <input type="number" id="finalPrice" placeholder="e.g. 99.36">
+  </label>
+
+  <div class="btn-group">
+    <button onclick="calculateDiscountPercent()">Calculate Discount %</button>
+    <button onclick="clearCalc2()">Clear</button>
+  </div>
+
+  <div id="result2"></div>
+
+  <script>
+    function calculateFinalPrice() {
+      const originalPrice = parseFloat(document.getElementById("origPrice1").value);
+      const discountPercent = parseFloat(document.getElementById("discountPercent").value);
+      if (isNaN(originalPrice) || isNaN(discountPercent)) {
+        document.getElementById("result1").innerText = "Please enter valid numbers.";
+        return;
+      }
+      const discountAmount = (originalPrice * discountPercent) / 100;
+      const finalPrice = originalPrice - discountAmount;
+      document.getElementById("result1").innerText = 
+        `Discount: $${discountAmount.toFixed(2)}\nFinal Price: $${finalPrice.toFixed(2)}`;
+    }
+
+    function calculateDiscountPercent() {
+      const originalPrice = parseFloat(document.getElementById("origPrice2").value);
+      const finalPrice = parseFloat(document.getElementById("finalPrice").value);
+      if (isNaN(originalPrice) || isNaN(finalPrice) || finalPrice > originalPrice) {
+        document.getElementById("result2").innerText = "Please enter valid values (final price should be less than original).";
+        return;
+      }
+      const discountPercent = ((originalPrice - finalPrice) / originalPrice) * 100;
+      const discountAmount = originalPrice - finalPrice;
+      document.getElementById("result2").innerText = 
+        `Discount Amount: $${discountAmount.toFixed(2)}\nDiscount: ${discountPercent.toFixed(2)}%`;
+    }
+
+    function clearCalc1() {
+      document.getElementById("origPrice1").value = "";
+      document.getElementById("discountPercent").value = "";
+      document.getElementById("result1").innerText = "";
+    }
+
+    function clearCalc2() {
+      document.getElementById("origPrice2").value = "";
+      document.getElementById("finalPrice").value = "";
+      document.getElementById("result2").innerText = "";
+    }
+  </script>
+</body>
+</html>
